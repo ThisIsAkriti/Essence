@@ -11,7 +11,7 @@ This repository contains the frontend part of the project. The frontend is built
 8. [License](#license)
 
 ## Introduction
-The Essence frontend is designed to provide a user-friendly interface for browsing, searching, and managing a collection of perfumes. Leveraging the power of React, Vite, and Chakra UI, this project offers fast and responsive performance with modern design principles.
+The Essence frontend is designed to provide a user-friendly interface for browsing, searching, and managing a collection of perfumes. Leveraging the power of React, Vite, and tailwindCSS, this project offers fast and responsive performance with modern design principles.
 
 ## 
 
@@ -32,6 +32,24 @@ The Essence frontend is designed to provide a user-friendly interface for browsi
                   element={<yourComponenthere />}
                 />
             </Routes>
+
+- ### React Redux 
+    - our code must manage more state than before!
+    - For getting started see documentation and implement! 
+    #### https://react-redux.js.org
+
+
+### axios cors error:
+- Issue  with the CORS policy. Browser was blocking the request due to CORS settings on  backend server.
+- npm install cors
+###
+        const cors = require('cors');
+
+        app.use(cors({
+            origin: 'http://localhost:5173', 
+            credentials: true
+        }));
+
 ## Project Structure
 The frontend project structure is as follows:(to be updated....)
 

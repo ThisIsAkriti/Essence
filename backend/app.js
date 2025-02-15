@@ -5,19 +5,12 @@ import {connectDB} from './config/db.js'
 import productRoutes from "./routes/product.route.js";
 import cors from'cors';
 
-const allowedOrigins = ['https://essence-cyr4.onrender.com', 'http://localhost:5173']
 
 dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: 'http://localhost:5173',
     credentials: true
 }));
 

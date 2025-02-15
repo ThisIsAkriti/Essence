@@ -22,7 +22,7 @@ const HomePage = () => {
             base_url + "/api/products",
             { withCredentials: true }
         );
-        console.log(res.data.data);
+        
         getProductInfo(res.data.data);
     }
 
@@ -34,7 +34,7 @@ const HomePage = () => {
     const handleEditClick = async (product) => {
         setEditingId(product._id);
         setEditProduct({ ...product })
-        console.log("edit clicked!")
+        
     };
 
     const handleChange = (e) => {

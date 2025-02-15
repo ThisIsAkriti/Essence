@@ -10,8 +10,8 @@ const HomePage = () => {
     const dispatch = useDispatch();
     const [productInfo, getProductInfo] = useState([]);
 
-    const [editingId, setEditingId] = useState(null);
-    const [editedProduct, setEditProduct] = useState({
+    const [editingId, getEditingId] = useState(null);
+    const [editedProduct, getEditProduct] = useState({
         name: "",
         image: "",
         price: ""
@@ -27,19 +27,28 @@ const HomePage = () => {
     }
 
     const removeProduct = async (id) => {
-        dispatch(existingProductDelete(id));
-        getProductInfo(productInfo.filter(product => product._id !== id));
+
+        try {
+            await axios.delete(base_url + `/api/products/${id}`, { withCredentials: true });
+            dispatch(existingProductDelete(id));
+            getProductInfo(productInfo.filter(product => product._id !== id));
+            console.log("The product is deleted! " + id);
+
+        } catch (err) {
+            console.log("error " + err);
+        }
+        
     }
 
     const handleEditClick = async (product) => {
-        setEditingId(product._id);
-        setEditProduct({ ...product })
+        getEditingId(product._id);
+        getEditProduct({ ...product })
         
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setEditProduct((prev) => ({ ...prev, [name]: value }))
+        getEditProduct((prev) => ({ ...prev, [name]: value }))
     };
 
     const handleSave = async() => {
@@ -53,7 +62,7 @@ const HomePage = () => {
                 
             );
 
-            setEditingId(null);
+            getEditingId(null);
 
         } catch (error) {
             console.error("Error updating product:", error);

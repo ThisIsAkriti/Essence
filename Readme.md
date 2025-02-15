@@ -72,7 +72,14 @@ The Essence frontend is designed to provide a user-friendly interface for browsi
     - For getting started see documentation and implement! 
     #### https://react-redux.js.org
 
-
+## Project Structure
+- The frontend project structure is as follows:
+    - Navbar: Toggle dark/light mode, route to create page.
+    - Homepage 
+        - The products are displayed here.
+        - Products can be Edited and Deleted.
+    - Create Page
+        - Create the product({name, price, image});
 ### axios cors error:
 - Issue  with the CORS policy. Browser was blocking the request due to CORS settings on  backend server.
 - npm install cors // backend
@@ -83,15 +90,6 @@ The Essence frontend is designed to provide a user-friendly interface for browsi
             origin: 'http://localhost:5173', 
             credentials: true
         }));
-
-## Project Structure
-The frontend project structure is as follows:
-    - Navbar - Toggle dark/light mode, route to create page.
-    - Homepage 
-        - The products are displayed here.
-        - Products can be Edited and Deleted.
-    - Create Page
-        - Create the product({name, price, image});
 
 # 
 ## Deployment

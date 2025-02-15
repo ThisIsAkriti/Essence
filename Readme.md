@@ -75,7 +75,7 @@ The Essence frontend is designed to provide a user-friendly interface for browsi
 
 ### axios cors error:
 - Issue  with the CORS policy. Browser was blocking the request due to CORS settings on  backend server.
-- npm install cors
+- npm install cors // backend
 ###
         const cors = require('cors');
 
@@ -85,8 +85,36 @@ The Essence frontend is designed to provide a user-friendly interface for browsi
         }));
 
 ## Project Structure
-The frontend project structure is as follows:(to be updated....)
+The frontend project structure is as follows:
+    - Navbar - Toggle dark/light mode, route to create page.
+    - Homepage 
+        - The products are displayed here.
+        - Products can be Edited and Deleted.
+    - Create Page
+        - Create the product({name, price, image});
 
+# 
+## Deployment
+- app.js
+        
+        import path from "path";
 
+        app.use(cors({
+        origin: ['http://localhost:5173' , "https://essence-46no.onrender.com"],
+        credentials: true
+        }));
+
+        app.use(express.static(path.join(_dirname, "/frontend/dist")));
+        app.get('*', (req, res) => {
+            res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"))
+        });
+
+- frontend
+    change the base url with the hosting url
+
+        export const base_url = location.hostname === "localhost"?"http://localhost:xyz" : "https://abcd.com";
+
+- root folder
+    properly write the script > "dev" , "build" and "start" command!
 ## License
 This project is licensed under the MIT License.

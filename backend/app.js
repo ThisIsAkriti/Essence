@@ -11,7 +11,7 @@ const app = express();
 const _dirname = path.resolve();
 
 app.use(cors({
-    origin: ['http://localhost:5173' , "https://essence-khaki.vercel.app/"],
+    origin: ['http://localhost:5173' , "https://essence-46no.onrender.com"],
     credentials: true
 }));
 

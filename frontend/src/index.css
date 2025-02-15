@@ -1,3 +1,47 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes slide-up {
+    0% {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  
+  .slide-up-1 {
+    animation: slide-up 0.5s ease-out;
+  }
+  .slide-up-2 {
+    animation: slide-up ease-out 1s;
+  }
+  
+
+  .hidden {
+    display: none;
+  }
+  
+  .visible {
+    display: block;
+  }
+
+  .fade-out1 {
+    animation: fade-out 0.5s ease-out forwards;
+  }
+  .fade-out2 {
+    animation: fade-out 1s ease-out forwards;
+  }

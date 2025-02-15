@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className="flex justify-center">
-        <div className=" sm:w-[80vw] w-full">
+        <div className=" sm:w-[80vw] w-[90vw]">
           <Navbar/>
           
           <div className="flex justify-center items-center min-h-screen -mt-36">

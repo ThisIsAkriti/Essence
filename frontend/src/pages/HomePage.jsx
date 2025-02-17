@@ -131,7 +131,7 @@ const HomePage = () => {
                                     <div className="mt-4 px-2 gap-x-2 font-bold text-lg rounded-lg flex w-full justify-between">
                                     
                                         <CiEdit className="size-6 text-blue-600 cursor-pointer" onClick={() => handleEditClick(product)} />
-                                        <MdOutlineDelete className="size-6 text-red-600 cursor-pointer" onClick={() => removeProduct(product._id)} />
+                                        <MdOutlineDelete className="size-6 text-red-600 cursor-pointer hidden" onClick={() => removeProduct(product._id)} />
                                     
                                     </div>
                                 </div>

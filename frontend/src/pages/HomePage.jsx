@@ -5,11 +5,31 @@ import { CiEdit } from "react-icons/ci";
 import axios from 'axios';
 import {existingProductDelete, modifyProduct} from "../utils/slices/productSlice"
 import { useDispatch } from "react-redux";
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
     const dispatch = useDispatch();
-    const [productInfo, getProductInfo] = useState([]);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [isOwner, setIsOwner] = useState(false);
+    const { secretKey } = useParams();
+    const secretKeyStored = import.meta.env.VITE_SECRET_KEY;
+    
+    const accessKey = location.pathname.includes(secretKeyStored);
+    const valid = secretKey && accessKey;
+    
+    useEffect(() => {
+        if (secretKey) {
+            if (valid) {
+                setIsOwner(true);
+            } else {
+                navigate("/ErrorPage")
+            }
 
+        }
+    }, [secretKey, secretKeyStored, location.pathname]);
+    
+    const [productInfo, getProductInfo] = useState([]);
     const [editingId, getEditingId] = useState(null);
     const [editedProduct, getEditProduct] = useState({
         name: "",
@@ -131,7 +151,7 @@ const HomePage = () => {
                                     <div className="mt-4 px-2 gap-x-2 font-bold text-lg rounded-lg flex w-full justify-between">
                                     
                                         <CiEdit className="size-6 text-blue-600 cursor-pointer" onClick={() => handleEditClick(product)} />
-                                        <MdOutlineDelete className="size-6 text-red-600 cursor-pointer hidden" onClick={() => removeProduct(product._id)} />
+                                        {isOwner && <MdOutlineDelete className="size-6 text-red-600 cursor-pointer " onClick={() => removeProduct(product._id)} />}
                                     
                                     </div>
                                 </div>

@@ -1,5 +1,6 @@
 import Product from "../models/product.model.js";
 import mongoose from "mongoose";
+import Perfume from "../models/perfumeSchema.model.js";
 
 export const postProduct = async (req, res) => {
     const product = req.body; // user will send this data to db;
@@ -47,8 +48,12 @@ export const deleteProduct = async (req, res) => {
 
 export const getProduct = async (req, res) => {
     const products = await Product.find({}); // empty {} means All the items!
+    const perfumes = await Perfume.find({});
     try {
-        res.status(200).json({ success: true, data: products });
+        // Merge both arrays
+        const allItems = [...perfumes, ...products];
+
+        res.status(200).json({ success: true, data: allItems });
     } catch (err) {
         res.status(500).json({ success: false, message: "Server Error: ", err });
     }

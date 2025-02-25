@@ -31,6 +31,20 @@ The Perfume Collection backend is designed to handle all server-side logic, incl
 - Create products collection, to do so we'll create model using mongoose(documentation):
   - create the productSchema using mongoose.Schema() 
 
+### In order to gather product data:
+- Created a JSON file with a list of perfumes (name, brand, price, image, description, etc.).
+- Created perfume schema.
+- Created importPerfume, imported perfume and connected to db.
+- Then fetched the api and data got updated in json file (as in fetchPerfume component!);
+
+- Run node fetchPerfumes.js to get perfume data
+- Run node importData.js to save data into MongoDB
+- Re-run the script everytime we change anything: 
+
+        rm data/perfumes.json  # (Windows: del data/perfumes.json)
+        node fetchPerfumes.js   # Fetch new data
+        node importPerfumes.js  # Import into MongoDB
+
 ##
 
 # Essence Frontend (vite + react)

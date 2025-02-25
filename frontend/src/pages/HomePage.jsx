@@ -34,7 +34,10 @@ const HomePage = () => {
     const [editedProduct, getEditProduct] = useState({
         name: "",
         image: "",
-        price: ""
+        price: "",
+        brand: "",
+        description: "",
+        url:""
     });
 
     const getAllProducts = async() => {
@@ -102,7 +105,7 @@ const HomePage = () => {
                 {
                     productInfo.map((product) => (
 
-                        <div key={product._id} className=" w-64 h-[484px] border border-gray-200 dark:border-gray-800 p-4 rounded-md shadow-md shadow-gray-300 dark:shadow-gray-800">
+                        <div key={product._id} className=" w-64 h-[570px] border border-gray-200 dark:border-gray-800 p-4 rounded-md shadow-md shadow-gray-300 dark:shadow-gray-800">
                             
                             {editingId === product._id ? (
                                 
@@ -145,11 +148,15 @@ const HomePage = () => {
                             (
                             <>
                                 <img className=" h-72 w-64 border border-gray-300 dark:border-gray-700 rounded-md" src={product.image} alt="perfume" />
-                                <div className="flex flex-col space-y-2 mt-4">
-                                    <div className="font-bold text-xl line-clamp-2 overflow-hidden text-center h-[56px]">{product.name} Opulent Blend</div>
+                                <div className="flex flex-col space-y-2 mt-4 flex-grow min-h-[200px]">
+                                    <div className="font-bold text-xl line-clamp-1 overflow-hidden text-center cursor-pointer" title={product.name}>{product.name}</div>
+                                    <div className=" text-sm text-center line-clamp-1 cursor-pointer" title={product.brand}  >{product.brand}</div>
+                                    <div className="font-semibold text-sm text-center">{product.description}</div>
+                                    <div className=" text-xs text-blue-600 text-center cursor-pointer" onClick={() => window.open(product.url, "_blank")}>View the product</div>
                                     <div className="font-semibold text-lg text-center">${product.price}</div>
-                                    <div className="mt-4 px-2 gap-x-2 font-bold text-lg rounded-lg flex w-full justify-between">
-                                    
+                                            
+                                    <div className=" px-2 gap-x-2 font-bold text-lg rounded-lg flex w-full justify-between mt-auto">
+                                        
                                         <CiEdit className="size-6 text-blue-600 cursor-pointer" onClick={() => handleEditClick(product)} />
                                         {isOwner && <MdOutlineDelete className="size-6 text-red-600 cursor-pointer " onClick={() => removeProduct(product._id)} />}
                                     

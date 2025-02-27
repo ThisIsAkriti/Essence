@@ -105,7 +105,7 @@ const HomePage = () => {
                 {
                     productInfo.map((product) => (
 
-                        <div key={product._id} className=" w-64 h-[570px] border border-gray-200 dark:border-gray-800 p-4 rounded-md shadow-md shadow-gray-300 dark:shadow-gray-800">
+                        <div key={product._id} className=" w-64 h-[570px] border border-gray-100 dark:border-gray-800 p-4 rounded-md shadow-lg shadow-gray-100 dark:shadow-gray-900">
                             
                             {editingId === product._id ? (
                                 
@@ -147,20 +147,37 @@ const HomePage = () => {
                             :
                             (
                             <>
-                                <img className=" h-72 w-64 border border-gray-300 dark:border-gray-700 rounded-md" src={product.image} alt="perfume" />
-                                <div className="flex flex-col space-y-2 mt-4 flex-grow min-h-[200px]">
+                                <img className=" h-72 w-64 border border-gray-100 dark:border-gray-700 rounded-md" src={product.image} alt="perfume" />
+                                <div className="flex flex-col mt-4 flex-grow min-h-[200px]">
                                     <div className="font-bold text-xl line-clamp-1 overflow-hidden text-center cursor-pointer" title={product.name}>{product.name}</div>
-                                    <div className=" text-sm text-center line-clamp-1 cursor-pointer" title={product.brand}  >{product.brand}</div>
-                                    <div className="font-semibold text-sm text-center">{product.description}</div>
-                                    <div className=" text-xs text-blue-600 text-center cursor-pointer" onClick={() => window.open(product.url, "_blank")}>View the product</div>
-                                    <div className="font-semibold text-lg text-center">${product.price}</div>
+                                    <div className=" text-md font-semibold text-center line-clamp-1 cursor-pointer mt-4" title={product.brand}  >{product.brand? product.brand : "Unbranded Treasure"}</div>
+                                    
+                                    <div
+                                        className="text-xs text-center bg-gray-100 dark:bg-gray-800 rounded-md py-1 px-2 mt-1 overflow-hidden line-clamp-2"
+                                        title={product.description}
+                                        >
+                                        {product.description ? product.description : "Mystery Awaits: No Description Provided"}
+                                    </div>
+
                                             
-                                    <div className=" px-2 gap-x-2 font-bold text-lg rounded-lg flex w-full justify-between mt-auto">
+                                    <div className=" text-xs text-blue-600 text-center cursor-pointer mt-1" onClick={() => {
+                                        const link = product.url || product.image;
+                                        window.open(link, "_blank");
+                                    }}
+                                    >View the product</div>
+                                    <div className="font-semibold text-lg text-center mt-2 mb-4">${product.price}</div>
+                                            
+                                    {isOwner? (<div className=" px-2 gap-x-2 font-bold text-lg rounded-lg flex w-full justify-between mt-auto">
                                         
                                         <CiEdit className="size-6 text-blue-600 cursor-pointer" onClick={() => handleEditClick(product)} />
-                                        {isOwner && <MdOutlineDelete className="size-6 text-red-600 cursor-pointer " onClick={() => removeProduct(product._id)} />}
+                                        <MdOutlineDelete className="size-6 text-red-600 cursor-pointer " onClick={() => removeProduct(product._id)} />
                                     
-                                    </div>
+                                        </div>)
+                                            :
+                                        (<div className=" px-2 gap-x-2 font-bold text-lg rounded-lg text-center w-full mt-auto py-2 dark:bg-yellow-500 bg-yellow-500 hover:opacity-80 cursor-pointer">
+                                            Add to cart
+                                        </div>
+                                    )} 
                                 </div>
                             </>
                             )}
